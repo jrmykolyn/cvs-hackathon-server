@@ -2612,8 +2612,8 @@ pdp-product-header-rating {
           height="682"
           layout="responsive"
           type="slides"
-          [slide]="product.selectedSlideForPeppermint"
-          on="slideChange: AMP.setState({product: {selectedSlideForPeppermint: event.index}})"
+          [slide]="product.selectedSlideFor<%= state.variants[i].name %>"
+          on="slideChange: AMP.setState({product: {selectedSlideFor<%= state.variants[i].name %>: event.index}})"
           class="fadeIn"
           [hidden]="product.selectedFlavor != '<%= state.variants[i].slug %>'"
           <% if ( i > 0 ) { %>
@@ -2621,7 +2621,7 @@ pdp-product-header-rating {
           <% } %>
         >
           <% for (var j = 0, y = 3; j < y; j++) { %>
-              <amp-img src="https://via.placeholder.com/1024x682"
+              <amp-img src="https://via.placeholder.com/1024x682?text=<%= i %>-<%= j%>"
                 width="1024"
                 height="682"
                 layout="responsive"
@@ -2633,29 +2633,10 @@ pdp-product-header-rating {
         </amp-carousel>
     <% } %>
 
-        <amp-carousel id="golden-apple-carousel"
-          width="1024"
-          height="682"
-          layout="responsive"
-          type="slides"
-          [slide]="product."
-          on="slideChange: AMP.setState({product: {selectedSlideForSpearmint: event.index}})"
-          hidden
-          class="fadeIn"
-          [hidden]="product.selectedFlavor != 'spearmint'">
-          <amp-img src="/img/golden_apple1_1024x682.jpg"
-            width="1024"
-            height="682"
-            layout="responsive"
-            on="tap:gallery-lightbox"
-            role="button"
-            tabindex="0">
-          </amp-img>
-        </amp-carousel>
-
-
-              <amp-image-lightbox id="gallery-lightbox"
-          layout="nodisplay">
+        <amp-image-lightbox
+            id="gallery-lightbox"
+            layout="nodisplay"
+        >
           <div on="tap:gallery-lightbox.close"
             role="button"
             tabindex="0">
@@ -2672,26 +2653,11 @@ pdp-product-header-rating {
       </div>
 
 
-            <amp-state id="product">
+      <amp-state id="product">
         <script type="application/json">
-          {
-            "selectedFlavor": "peppermint",
-            "selectedSlideForSpearmint": 0,
-            "selectedSlideForPeppermint": 0,
-            "moreItemsPageIndex": 0,
-            "hasMorePages": true,
-            "peppermint": {
-              "price": "$1.23"
-            },
-            "spearmint": {
-              "price": "$4.56"
-            }
-          }
+            <%- JSON.stringify( state ) %>
         </script>
       </amp-state>
-
-
-
 
             <div class="shoppdp-c-productPricing">
         <div class="shoppdp-c-productPricing__primaryDescGroup">
@@ -3005,8 +2971,7 @@ pdp-product-header-rating {
       width="auto"
       height="350"
       layout="fixed-height"
-      src="https://b46a02bc.ngrok.io/ymal/1990031"
-      [src]="myState.items"
+      src="/api/ymal/1990031"
       id="show-more-list">
       <template type="amp-mustache">
         <a class="tile tile--ymal"
@@ -3015,44 +2980,17 @@ pdp-product-header-rating {
             height="100"
             layout="fixed"
             alt="{{name}}"
-            src="{{img}}"></amp-img>
+            src="{{img}}"
+          ></amp-img>
           <button>Add To Basket</button>
-
-                <p class="price">Price</p>
-
-                <p class="unit-price">(Unit Price)</p>
+          <p class="price">Price</p>
+          <p class="unit-price">(Unit Price)</p>
           <p class="promo">Promo Message</p>
           <p class="name">{{name}}</p>
-          <p class="rating">
-
-                </p>
+          <p class="rating"></p>
         </a>
       </template>
     </amp-list>
-
-          <amp-state id="myState"
-      src="/json/related_products.json">
-    </amp-state>
-
-          <form method="GET"
-      action="/json/more_related_products_page"
-      action-xhr="/json/more_related_products_page"
-      target="_top"
-      on="submit-success: AMP.setState({
-          myState: { items: myState.items.concat(event.response.items)},
-          product: {moreItemsPageIndex: product.moreItemsPageIndex + 1,
-                    hasMorePages: event.response.hasMorePages}
-        });">
-      <input type="hidden"
-        name="moreItemsPageIndex"
-        value="0"
-        [value]="product.moreItemsPageIndex">
-      <input type="submit"
-        value="Show more"
-        class="ampstart-btn caps m1 mb3"
-        [hidden]="!product.hasMorePages">
-    </form>
-
 
           <amp-analytics type="googleanalytics">
       <script type="application/json">
@@ -3096,10 +3034,12 @@ pdp-product-header-rating {
         }
       </script>
     </amp-analytics>
+    <!--
     <amp-install-serviceworker
       src="/sw.js"
       data-iframe-src="http://localhost:8000/sw.html"
       layout="nodisplay">
     </amp-install-serviceworker>
+    -->
       </body>
 </html>
