@@ -10,6 +10,7 @@ const { Query, BrowserBridge } = require( 'groupby-api' );
 
 // Project
 const CONFIG = require( './config' );
+const DATA = require( './src/data' );
 const TRANSFORMERS = require( './src/transformers' );
 
 // --------------------------------------------------
@@ -42,32 +43,17 @@ app.get( '/sku/:skuId', ( req, res ) => {
             // TODO: Return error.
         }
 
-        const variants = [
-            {
-                name: 'Peppermint',
-                slug: 'peppermint',
-            },
-            {
-                name: 'Spearmint',
-                slug: 'spearmint',
-            },
-        ];
+        const variants = TRANSFORMERS.variants( data.records );
 
         let payload = {
             state: {
                 "moreItemsPageIndex": 0,
                 "hasMorePages": true,
-                "peppermint": {
-                  "price": "$7.89"
-                },
-                "spearmint": {
-                  "price": "$9.87"
-                },
+                selectedVariantIndex: 0,
                 variants,
             },
         };
 
-        payload.state.selectedFlavor = variants[ 0 ].slug;
         payload.state = variants.reduce( ( acc, variant ) => ({ ...acc, [`selectedSlideFor${variant.name}`]: 0 }), payload.state );
 
         // Make data dynamic.

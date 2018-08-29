@@ -2067,7 +2067,7 @@ pdp-product-header-rating {
       <section class="gbcvs-c-pageHd">
         <div class="gbcvs-c-pageHd__inner">
           <div class="gbcvs-c-pageHd__l-left">
-            <h1 class="m1 gbcvs-c-pageHd__heading">Wrigley's Orbit Gum, 40 CT</h1>
+            <h1 class="m1 gbcvs-c-pageHd__heading"><%= state.variants[ 0 ].name %></h1>
           </div>
         </div>
       </section>
@@ -2075,7 +2075,7 @@ pdp-product-header-rating {
 
       <!--
       <div class="product-gallery gbcvs-c-productImageShelf">
-        <ul [hidden]="product.selectedVariant != 'peppermint'">
+        <ul [hidden]="product.selectedVariantIndex != 'peppermint'">
           <li>
             <amp-img on="tap:AMP.setState({product: {selectedSlideForPeppermint: 0}})"
               src="/img/green_apple_1_60x40.jpg"
@@ -2100,7 +2100,7 @@ pdp-product-header-rating {
         </ul>
 
         <ul hidden
-          [hidden]="product.selectedVariant != 'spearmint'">
+          [hidden]="product.selectedVariantIndex != 'spearmint'">
           <li>
             <amp-img on="tap:AMP.setState({product: {: 0}})"
               src="/img/product1_alt1_60x40.jpg"
@@ -2124,16 +2124,16 @@ pdp-product-header-rating {
           height="682"
           layout="responsive"
           type="slides"
-          [slide]="product.selectedSlideFor<%= state.variants[i].name %>"
-          on="slideChange: AMP.setState({product: {selectedSlideFor<%= state.variants[i].name %>: event.index}})"
+          [slide]="product.selectedSlideFor<%= state.variants[i].slug %>"
+          on="slideChange: AMP.setState({product: {selectedSlideFor<%= state.variants[i].slug %>: event.index}})"
           class="fadeIn"
-          [hidden]="product.selectedVariant != '<%= state.variants[i].slug %>'"
+          [hidden]="product.selectedVariantIndex != <%= i %>"
           <% if ( i > 0 ) { %>
           hidden
           <% } %>
         >
-          <% for (var j = 0, y = 3; j < y; j++) { %>
-              <amp-img src="https://via.placeholder.com/1024x682?text=<%= i %>-<%= j%>"
+          <% for (var j = 0, y = state.variants[i].images.length; j < y; j++) { %>
+              <amp-img src="<%= state.variants[i].images[j] %>"
                 width="1024"
                 height="682"
                 layout="responsive"
@@ -2174,7 +2174,8 @@ pdp-product-header-rating {
             <div class="shoppdp-c-productPricing">
         <div class="shoppdp-c-productPricing__primaryDescGroup">
           <p class="shoppdp-c-productPricing__actual">
-            <span [text]="product[product.selectedVariant].price">$5.99</span>
+            <span>$</span>
+            <span [text]="product.variants[+product.selectedVariantIndex].price">5.99</span>
           </p>
         </div>
       </div>
@@ -2206,10 +2207,10 @@ pdp-product-header-rating {
                   <nav class="gbcvs-c-variantSelector__group ">
                     <amp-selector name="Variant"
                       layout="container"
-                      [selected]="product.selectedVariant"
+                      [selected]="product.selectedVariantIndex"
                       on="select:AMP.setState({
                           product: {
-                            selectedVariant: event.targetOption,
+                            selectedVariantIndex: event.targetOption,
                             selectedSlideForPeppermint: 0,
                             selectedSlideForYellow: 0,
                           }
@@ -2217,7 +2218,7 @@ pdp-product-header-rating {
                       <ul class=" gbcvs-c-variantSelectorList gbcvs-c-variantSelectorList--text ">
                       <% for ( var i = 0, x =state.variants.length; i < x; i++ ) { %>
                         <li class="gbcvs-c-variantSelectorList__item  gbcvs-c-variantSelectorList__item--text">
-                          <button option="<%= state.variants[i].slug %>"
+                          <button option="<%= i %>"
                             <% if ( i === 0 ) { %>
                             selected
                             <% } %>
