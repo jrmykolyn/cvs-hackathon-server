@@ -1661,6 +1661,10 @@
      Sidebar - Shipping
      ========================================================================== */
 
+.shoppdp-l__invfill {
+    margin-top: 16px;
+}
+
      .shoppdp-l__sidebar {
   padding: 24px 16px;
   background: #f2f2f2; }
@@ -1947,6 +1951,101 @@ pdp-product-header-rating {
       .gbcvs-c-variantSelectorButton--secondaryAlt[selected]:hover {
     box-shadow: inset 0 0 0 1px #c00;
 }
+
+
+    /* ==========================================================================
+     Product Info
+     ========================================================================== */
+.shoppdp-c-productInfo {
+  border-top: 2px solid #000;
+  border-bottom: 1px solid #000; }
+  @media (min-width: 768px) {
+    .shoppdp-c-productInfo {
+      border-top: 1px solid #ccc;
+      border-bottom: 0; } }
+
+.shoppdp-productInfoSection {
+  border-top: 1px solid #ccc; }
+  @media (min-width: 768px) {
+    .shoppdp-productInfoSection {
+      border-top: 0; } }
+
+.shoppdp-productInfoSection__header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 56px;
+  margin-bottom: 0;
+  padding-left: 12px;
+  color: #000;
+  cursor: pointer; }
+  .shoppdp-productInfoSection__header:focus {
+    outline: 1px dotted #000;
+    outline-offset: 2px;
+    text-decoration: underline;
+    background-color: #f2f2f2; }
+  .shoppdp-productInfoSection__header:hover {
+    text-decoration: underline;
+    background-color: #f2f2f2; }
+  .shoppdp-productInfoSection__header:active {
+    color: #a50000;
+    text-decoration: underline;
+    background-color: #fff; }
+    .shoppdp-productInfoSection__header:active .shoppdp-productInfoSection__caret {
+      border-left-color: #a50000; }
+
+.shoppdp-productInfoSection__heading {
+  font-size: 22px;
+  line-height: 1.3;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  color: inherit; }
+  @media (min-width: 768px) {
+    .shoppdp-productInfoSection__heading {
+      font-size: 28px;
+      line-height: 1.3;
+      font-weight: bold;
+      letter-spacing: -1px; } }
+
+.shoppdp-productInfoSection__caretContainer {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  margin-right: 8px; }
+
+.shoppdp-productInfoSection__caret {
+  margin: auto;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid #000;
+  transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  transition: transform 0.3s, -webkit-transform 0.3s; }
+  .shoppdp-productInfoSection__caret.caret--rotate {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); }
+
+.shoppdp-productInfoSection__body {
+  display: none;
+  padding: 8px 16px 24px 44px; }
+  .shoppdp-productInfoSection__body.is-active {
+    display: block; }
+
+@media (min-width: 768px) {
+  .shoppdp-productInfoSection {
+    margin-top: 64px; }
+  .shoppdp-productInfoSection__header {
+    min-height: auto;
+    padding-left: 0;
+    cursor: default;
+    pointer-events: none; }
+  .shoppdp-productInfoSection__caretContainer {
+    display: none; }
+  .shoppdp-productInfoSection__body {
+    display: block;
+    padding: 16px 0 0 0; } }
 
 
     /* ==========================================================================
@@ -2381,48 +2480,82 @@ pdp-product-header-rating {
           </gbcvs-variant-selector-row>
         </gbcvs-variant-selector>
 
-        <div class="items-center flex my1">
-          <input type="submit"
+        <div class="gbcvs-c-addToCart">
+          <div class="gbcvs-c-addToCart__inner">
+            <input type="submit"
             class="cvsui-c-button cvsui-c-button--primary cvsui-c-button--lg cvsui-c-button--fullWidth gbcvs-c-addToCart__atcBtn"
             name="add-to-cart"
             value="Add to cart">
-        </div>
-        <input type="hidden"
-          name="name"
-          value="Apple">
-        <input type="hidden"
-          name="price"
-          value="$1.99">
-        <input name="clientId"
-          type="hidden"
-          value="CLIENT_ID(cart)"
-          data-amp-replace="CLIENT_ID">
-        <div submit-error>
-          <template type="amp-mustache">
-            Error! Looks like something went wrong with your shopping cart, please try to add an item again. {{error}}
-          </template>
+            <input type="hidden"
+              name="name"
+              value="Apple">
+            <input type="hidden"
+              name="price"
+              value="$1.99">
+            <input name="clientId"
+              type="hidden"
+              value="CLIENT_ID(cart)"
+              data-amp-replace="CLIENT_ID">
+            <div submit-error>
+              <template type="amp-mustache">
+                Error! Looks like something went wrong with your shopping cart, please try to add an item again. {{error}}
+              </template>
+            </div>
+          </div>
         </div>
       </form>
 
-      <pdp-product-two-day-shipping two-day-shipping-available="true"
+      <div class="shoppdp-l__invfill">
+        <pdp-product-two-day-shipping two-day-shipping-available="true"
         class="gb-ui">
-        <div class="shoppdp-c-shipping">
-          <p class="shoppdp-c-shipping__heading">Eligible for 2-day shipping.</p>
-          <p class="shoppdp-c-shipping__desc">Expected delivery in 1-2 business days.</p>
-          <cvsui-button-text custom-css="shoppdp-c-shipping__detailsBtn"
-            size="SM"
-            styles="secondaryAlt"
-            weight="normal"
-            label="Details"
-            class="gb-ui">
-            <button class="cvsui-c-buttonText shoppdp-c-shipping__detailsBtn cvsui-c-buttonText--secondaryAlt cvsui-c-buttonText--sm cvsui-c-buttonText--fwNormal  "
-              target="_self"
-              role="undefined">
-              Details
-            </button>
-          </cvsui-button-text>
+          <div class="shoppdp-c-shipping">
+            <p class="shoppdp-c-shipping__heading">Eligible for 2-day shipping.</p>
+            <p class="shoppdp-c-shipping__desc">Expected delivery in 1-2 business days.</p>
+            <cvsui-button-text custom-css="shoppdp-c-shipping__detailsBtn"
+              size="SM"
+              styles="secondaryAlt"
+              weight="normal"
+              label="Details"
+              class="gb-ui">
+              <button class="cvsui-c-buttonText shoppdp-c-shipping__detailsBtn cvsui-c-buttonText--secondaryAlt cvsui-c-buttonText--sm cvsui-c-buttonText--fwNormal  "
+                target="_self"
+                role="undefined">
+                Details
+              </button>
+            </cvsui-button-text>
+          </div>
+        </pdp-product-two-day-shipping>
+      </div>
+    </div>
+
+    <div class="shoppdp-c-productInfo">
+      <div class="shoppdp-productInfoSection shoppdp-c-productDetails" role="undefined">
+        <div class="shoppdp-productInfoSection__detailsHeading">
+          <h2 class="shoppdp-productInfoSection__heading" for="productDetails">Details</h2>
+          <!-- Brand image -->
+          <a class="shoppdp-productInfoSection__brand" href="shop/brand-shop/O/orbit" alt="Visit Orbit page">
+            <img class="shoppdp-productInfoSection__brandImage" src="https://www.cvs.com/bizcontent/monetization/organicplacement/banner/4520.jpg" alt="Orbit">
+          </a>
         </div>
-      </pdp-product-two-day-shipping>
+        <button class="shoppdp-productInfoSection__header">
+          <div class="shoppdp-productInfoSection__caretContainer">
+            <div class="shoppdp-productInfoSection__caret "></div>
+          </div>
+          <span class="shoppdp-productInfoSection__label" for="productDetails">Details</span>
+        </button>
+        <div class="shoppdp-productInfoSection__body ">
+          <div>
+            <h4>Wrigley's Orbit White Peppermint Gum, 40CT</h4>
+            <p>
+              <span>40 CT</span>
+              <span>, </span>
+              <span>.23 lbs.</span>
+              <span> Item # 264156 </span>
+            </p>
+          </div>
+          <raw class="gbcvs-c-typography--product gb-ui" html="&amp;#160;artificially flavored&amp;#160;<div>&amp;#160;</div><div>Helps keep teeth white*</div><div>&amp;#160;</div><div>*Chewing 1 piece for 12 minutes 5x/day helped reduce staining in a 12 week clinical trial.</div><div>&amp;#160;</div><div>sugarfree gum</div><div>&amp;#160;</div><div>THINK TWICE</div><div>&amp;#160;</div><div>30% FEWER CALORIES THAN SUGARED GUM. CALORIE CONTENT OF THIS SIZE PIECE HAS BEEN REDUCED FROM 7 TO 5 CALORIES.</div><div>&amp;#160;</div><div>PRODUCE WITH GENETIC ENGINEERING.</div><div>&amp;#160;</div><div><strong>MADE BY THE WM WRIGLEY JR. COMPANY, CHICAGO, IL 60642.</strong></div><div>&amp;#160;</div><div>� 2016 Wm. Wrigley Jr. Company</div><div>&amp;#160;</div><div>QUESTIONS? COMMENTS? CALL 1-800-WRIGLEY (1-800-974-4539)</div><div>&amp;#160;</div>">&nbsp;artificially flavored&nbsp;<div>&nbsp;</div><div>Helps keep teeth white*</div><div>&nbsp;</div><div>*Chewing 1 piece for 12 minutes 5x/day helped reduce staining in a 12 week clinical trial.</div><div>&nbsp;</div><div>sugarfree gum</div><div>&nbsp;</div><div>THINK TWICE</div><div>&nbsp;</div><div>30% FEWER CALORIES THAN SUGARED GUM. CALORIE CONTENT OF THIS SIZE PIECE HAS BEEN REDUCED FROM 7 TO 5 CALORIES.</div><div>&nbsp;</div><div>PRODUCE WITH GENETIC ENGINEERING.</div><div>&nbsp;</div><div><strong>MADE BY THE WM WRIGLEY JR. COMPANY, CHICAGO, IL 60642.</strong></div><div>&nbsp;</div><div>� 2016 Wm. Wrigley Jr. Company</div><div>&nbsp;</div><div>QUESTIONS? COMMENTS? CALL 1-800-WRIGLEY (1-800-974-4539)</div><div>&nbsp;</div></raw>
+        </div>
+      </div>
     </div>
 
 
