@@ -55,7 +55,17 @@ app.get( '/sku/:skuId', ( req, res ) => {
                 },
                 "spearmint": {
                   "price": "$9.87"
-                }
+                },
+                variants: [
+                    {
+                        name: 'Peppermint',
+                        slug: 'peppermint',
+                    },
+                    {
+                        name: 'Spearmint',
+                        slug: 'spearmint',
+                    },
+                ],
             },
         } );
     } );
