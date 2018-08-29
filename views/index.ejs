@@ -2444,8 +2444,10 @@ pdp-product-header-rating {
       src="/api/ymal/1990031"
       id="show-more-list">
       <template type="amp-mustache">
-        <a class="tile tile--ymal"
-          href="/samples_templates/product_page/preview/">
+        <a
+          class="tile tile--ymal"
+          href="/samples_templates/product_page/preview/"
+        >
           <amp-img width="100"
             height="100"
             layout="fixed"
@@ -2453,9 +2455,8 @@ pdp-product-header-rating {
             src="{{img}}"
           ></amp-img>
           <button>Add To Basket</button>
-          <p class="price">Price</p>
-          <p class="unit-price">(Unit Price)</p>
-          <p class="promo">Promo Message</p>
+          <p class="price">{{price}}</p>
+          <p class="unit-price">({{unitPrice}} / ea.)</p>
           <p class="name">{{name}}</p>
           <p class="rating"></p>
         </a>

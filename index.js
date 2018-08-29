@@ -66,13 +66,32 @@ app.get( '/sku/:skuId', ( req, res ) => {
     } );
 } );
 
+// TEMP - START
+const names = [
+    'Listerine Pocketmist Cool Mint Oral Care Mist',
+    'CVS Health Dry Mouth Spray Mint Flavor',
+    'CVS Health Sugar Free Breath Strips',
+    'CVS Health Breath Freshening Mist Twin',
+    'CVS Health Dry Mouth Discs',
+];
+
+const prices = [
+    '4.54',
+    '4.89',
+    '2.72',
+    '3.49',
+    '5.59',
+];
+// TEMP - END
+
 // API routes.
 app.get( '/api/ymal/:skuId', ( req, res ) => {
-    res.json( { items: new Array( 5 ).fill( null ).map( () => ({
-        name: '__FOO__',
+    res.json( { items: new Array( 5 ).fill( null ).map( (_, i) => ({
+        name: names[ i ],
         img: 'https://via.placeholder.com/200x200?text=IMG',
-        price: '0.00',
-        rating: '5'
+        price: prices[ i ],
+        unitPrice: '1.00',
+        rating: ( 3 + ( Math.random() * 2 ) ).toFixed( 2 ),
     }) ) } );
 } );
 
