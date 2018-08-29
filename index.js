@@ -42,12 +42,19 @@ app.get( '/sku/:skuId', ( req, res ) => {
             // TODO: Return error.
         }
 
-        // TODO: Make data against.
-        res.render( 'index', {
+        const variants = [
+            {
+                name: 'Peppermint',
+                slug: 'peppermint',
+            },
+            {
+                name: 'Spearmint',
+                slug: 'spearmint',
+            },
+        ];
+
+        let payload = {
             state: {
-                "selectedFlavor": "peppermint",
-                "selectedSlideForPeppermint": 0,
-                "selectedSlideForSpearmint": 0,
                 "moreItemsPageIndex": 0,
                 "hasMorePages": true,
                 "peppermint": {
@@ -56,18 +63,15 @@ app.get( '/sku/:skuId', ( req, res ) => {
                 "spearmint": {
                   "price": "$9.87"
                 },
-                variants: [
-                    {
-                        name: 'Peppermint',
-                        slug: 'peppermint',
-                    },
-                    {
-                        name: 'Spearmint',
-                        slug: 'spearmint',
-                    },
-                ],
+                variants,
             },
-        } );
+        };
+
+        payload.state.selectedFlavor = variants[ 0 ].slug;
+        payload.state = variants.reduce( ( acc, variant ) => ({ ...acc, [`selectedSlideFor${variant.name}`]: 0 }), payload.state );
+
+        // Make data dynamic.
+        res.render( 'index', payload );
     } );
 } );
 
