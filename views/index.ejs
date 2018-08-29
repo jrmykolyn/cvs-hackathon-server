@@ -2441,6 +2441,10 @@ pdp-product-header-rating {
   background: #fff;
 }
 
+.shoppdp-t-amp .shoppdp-productInfoSection__header[selected] .shoppdp-productInfoSection__caret {
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); }
+
 
     /* ==========================================================================
      YMAL Tiles
@@ -2884,7 +2888,7 @@ pdp-product-header-rating {
     <div class="shoppdp-c-productInfo">
         <amp-selector role="tablist"
         layout="container"
-        class="ampTabContainer ampstart-headerbar-nav"
+        class=""
         keyboard-select-mode="select">
           <div class="shoppdp-productInfoSection shoppdp-c-productDetails">
             <button role="tab" selected option="a" class="tabButton shoppdp-productInfoSection__header">
@@ -2937,38 +2941,7 @@ pdp-product-header-rating {
         </amp-selector>
     </div>
 
-
-
-
-
-
-          <amp-selector role="tablist"
-      layout="container"
-      class="ampTabContainer ampstart-headerbar-nav"
-      keyboard-select-mode="select">
-      <div role="tab"
-        class="tabButton h4 ampstart-nav-item"
-        selected
-        option="a">ABOUT</div>
-      <div role="tabpanel"
-        class="tabContent p1 p">Fruit is rich in vitamins and minerals. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat.</div>
-      <div role="tab"
-        class="tabButton h4 ampstart-nav-item"
-        option="b">SPECS</div>
-      <div role="tabpanel"
-        class="tabContent p1 p">Always wash fruit before eating. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
-      <div role="tab"
-        class="tabButton h4 ampstart-nav-item"
-        option="c">SIZE</div>
-      <div role="tabpanel"
-        class="tabContent p1 p">Size may vary. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</div>
-    </amp-selector>
-
-
-
-
+    
           <div class="items-center flex">
       <h2 id="related-products"
         class="m1 inline-block">
