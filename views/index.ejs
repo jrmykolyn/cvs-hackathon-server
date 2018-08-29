@@ -2456,8 +2456,7 @@ pdp-product-header-rating {
       width="auto"
       height="350"
       layout="fixed-height"
-      src="https://b46a02bc.ngrok.io/ymal/1990031"
-      [src]="myState.items"
+      src="/api/ymal/1990031"
       id="show-more-list">
       <template type="amp-mustache">
         <a class="tile tile--ymal"
@@ -2466,44 +2465,17 @@ pdp-product-header-rating {
             height="100"
             layout="fixed"
             alt="{{name}}"
-            src="{{img}}"></amp-img>
+            src="{{img}}"
+          ></amp-img>
           <button>Add To Basket</button>
-
-                <p class="price">Price</p>
-
-                <p class="unit-price">(Unit Price)</p>
+          <p class="price">Price</p>
+          <p class="unit-price">(Unit Price)</p>
           <p class="promo">Promo Message</p>
           <p class="name">{{name}}</p>
-          <p class="rating">
-
-                </p>
+          <p class="rating"></p>
         </a>
       </template>
     </amp-list>
-
-          <amp-state id="myState"
-      src="/json/related_products.json">
-    </amp-state>
-
-          <form method="GET"
-      action="/json/more_related_products_page"
-      action-xhr="/json/more_related_products_page"
-      target="_top"
-      on="submit-success: AMP.setState({
-          myState: { items: myState.items.concat(event.response.items)},
-          product: {moreItemsPageIndex: product.moreItemsPageIndex + 1,
-                    hasMorePages: event.response.hasMorePages}
-        });">
-      <input type="hidden"
-        name="moreItemsPageIndex"
-        value="0"
-        [value]="product.moreItemsPageIndex">
-      <input type="submit"
-        value="Show more"
-        class="ampstart-btn caps m1 mb3"
-        [hidden]="!product.hasMorePages">
-    </form>
-
 
           <amp-analytics type="googleanalytics">
       <script type="application/json">
