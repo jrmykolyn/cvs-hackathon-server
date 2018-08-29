@@ -2075,7 +2075,7 @@ pdp-product-header-rating {
 
       <!--
       <div class="product-gallery gbcvs-c-productImageShelf">
-        <ul [hidden]="product.selectedFlavor != 'peppermint'">
+        <ul [hidden]="product.selectedVariant != 'peppermint'">
           <li>
             <amp-img on="tap:AMP.setState({product: {selectedSlideForPeppermint: 0}})"
               src="/img/green_apple_1_60x40.jpg"
@@ -2100,7 +2100,7 @@ pdp-product-header-rating {
         </ul>
 
         <ul hidden
-          [hidden]="product.selectedFlavor != 'spearmint'">
+          [hidden]="product.selectedVariant != 'spearmint'">
           <li>
             <amp-img on="tap:AMP.setState({product: {: 0}})"
               src="/img/product1_alt1_60x40.jpg"
@@ -2127,7 +2127,7 @@ pdp-product-header-rating {
           [slide]="product.selectedSlideFor<%= state.variants[i].name %>"
           on="slideChange: AMP.setState({product: {selectedSlideFor<%= state.variants[i].name %>: event.index}})"
           class="fadeIn"
-          [hidden]="product.selectedFlavor != '<%= state.variants[i].slug %>'"
+          [hidden]="product.selectedVariant != '<%= state.variants[i].slug %>'"
           <% if ( i > 0 ) { %>
           hidden
           <% } %>
@@ -2174,7 +2174,7 @@ pdp-product-header-rating {
             <div class="shoppdp-c-productPricing">
         <div class="shoppdp-c-productPricing__primaryDescGroup">
           <p class="shoppdp-c-productPricing__actual">
-            <span [text]="product[product.selectedFlavor].price">$5.99</span>
+            <span [text]="product[product.selectedVariant].price">$5.99</span>
           </p>
         </div>
       </div>
@@ -2201,50 +2201,44 @@ pdp-product-header-rating {
               <div class="gbcvs-c-variantSelector__inner">
                 <label for="quantity"
                   class="gbcvs-c-variantSelector__label">
-                  <strong class="gbcvs-c-variantSelector__category">Flavor:</strong> White Peppermint</label>
+                  <strong class="gbcvs-c-variantSelector__category">Variant:</strong> <%= state.variants[0].name %></label>
                 <div class="gbcvs-c-variantSelector__body ">
                   <nav class="gbcvs-c-variantSelector__group ">
-                    <amp-selector name="Flavor"
+                    <amp-selector name="Variant"
                       layout="container"
-                      [selected]="product.selectedFlavor"
+                      [selected]="product.selectedVariant"
                       on="select:AMP.setState({
                           product: {
-                            selectedFlavor: event.targetOption,
+                            selectedVariant: event.targetOption,
                             selectedSlideForPeppermint: 0,
                             selectedSlideForYellow: 0,
                           }
                         })">
                       <ul class=" gbcvs-c-variantSelectorList gbcvs-c-variantSelectorList--text ">
+                      <% for ( var i = 0, x =state.variants.length; i < x; i++ ) { %>
                         <li class="gbcvs-c-variantSelectorList__item  gbcvs-c-variantSelectorList__item--text">
-                          <button option="peppermint"
+                          <button option="<%= state.variants[i].slug %>"
+                            <% if ( i === 0 ) { %>
                             selected
+                            <% } %>
                             aria-pressed="true"
                             class="gbcvs-c-variantSelectorButton gbcvs-c-variantSelectorButton--secondaryAlt gbcvs-c-variantSelectorButton--text"
-                            aria-label="White Peppermint"
-                            title="White Peppermint">
-                            <span class="gbcvs-c-variantSelectorButton__label">White Peppermint</span>
+                            aria-label="<%= state.variants[i].name %>"
+                            title="<%= state.variants[i].name %>">
+                            <span class="gbcvs-c-variantSelectorButton__label"><%= state.variants[i].name %></span>
                             <div class="gbcvs-c-variantSelectorButton__check">
                               <cvsui-icon name="icon-check--s"
                                 base="gbcvs-c-variantSelectorButton__checkIcon"
                                 class="gb-ui"
                                 role="undefined">
-                                <svg class="gbcvs-c-variantSelectorButton__checkIcon   ">
+                                <svg class="gbcvs-c-variantSelectorButton__checkIcon">
                                   <use xlink:href="https://www.cvs.com/bizcontent/cvs-design-system/cvsui-icons/cvsui-icons.svg#icon-check--s"></use>
                                 </svg>
                               </cvsui-icon>
                             </div>
                           </button>
                         </li>
-                        <li class="gbcvs-c-variantSelectorList__item  gbcvs-c-variantSelectorList__item--text">
-                          <button option="spearmint"
-                            aria-pressed="false"
-                            class="gbcvs-c-variantSelectorButton gbcvs-c-variantSelectorButton--secondaryAlt gbcvs-c-variantSelectorButton--text"
-                            aria-label="White Spearmint"
-                            title="White Spearmint">
-                            <span class="gbcvs-c-variantSelectorButton__label">White Spearmint</span>
-                            <div class="gbcvs-c-variantSelectorButton__check"></div>
-                          </button>
-                        </li>
+                      <% } %>
                       </ul>
                     </amp-selector>
                   </nav>
