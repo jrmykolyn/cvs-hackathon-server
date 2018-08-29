@@ -62,6 +62,7 @@
     <meta name="amp-google-client-id-api" content="googleanalytics">
     <script async custom-element="amp-install-serviceworker" src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
     <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
+
     <title>pdp (Preview) - AMP by Example</title>
 <meta name="description" content="This is a live preview of the &#39;pdp&#39; sample. This sample showcases how to build a product page in AMP HTML." />
 
@@ -2501,6 +2502,13 @@ pdp-product-header-rating {
         }
       </script>
     </amp-analytics>
+    <amp-iframe
+        width="100"
+        height="100"
+        src="https://localhost:8080/stats"
+        sandbox="allow-scripts allow-same-origin"
+        frameborder=”0″
+    ></amp-iframe>
     <!--
     <amp-install-serviceworker
       src="/sw.js"

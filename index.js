@@ -27,6 +27,10 @@ app.set( 'view engine', 'ejs' );
 app.use( cors() );
 
 // View routes.
+app.get( '/stats', ( req, res ) => {
+    res.render( 'stats' );
+} );
+
 app.get( '/sku/:skuId', ( req, res ) => {
     const q = new Query()
         .withConfiguration( CONFIG )
@@ -46,6 +50,7 @@ app.get( '/sku/:skuId', ( req, res ) => {
         const variants = TRANSFORMERS.variants( data.records );
 
         let payload = {
+            port: PORT,
             state: {
                 "moreItemsPageIndex": 0,
                 "hasMorePages": true,
